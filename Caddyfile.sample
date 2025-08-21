@@ -1,0 +1,16 @@
+# Переименуй в Caddyfile и положи (например) в C:\caddy\Caddyfile
+# Обнови путь root на папку 'dist' после сборки фронтенда.
+bskdnwgl.duckdns.org {
+  encode zstd gzip
+
+  @api path /api/*
+  handle @api {
+    reverse_proxy localhost:3000
+  }
+
+  # <- ЗАМЕНИ путь на реальный путь к папке dist на твоём ПК
+  root * C:\path\to\card-flow-sync-main\dist
+  file_server
+
+  try_files {path} /index.html
+}
